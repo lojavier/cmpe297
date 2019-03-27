@@ -4,7 +4,12 @@ OPENCV_VERSION="4.0.1"
 cd ~/
 BASHRC_FILE="${HOME}/.bashrc"
 
-upgrade_packages () {
+upgrade_packages_1 () {
+	sudo apt update --fix-missing && sudo apt upgrade -y
+	return $?
+}
+
+upgrade_packages_2 () {
 	sudo apt-get update --fix-missing && sudo apt-get upgrade -y
 	return $?
 }
@@ -15,82 +20,98 @@ install_packages () {
 	return $?
 }
 
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(upgrade_packages)
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "build-essential cmake unzip pkg-config git")
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "libjpeg-dev libpng-dev libtiff-dev")
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "libxvidcore-dev libx264-dev")
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "libgtk-3-dev")
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "libatlas-base-dev gfortran")
-	echo "$ret"
-done
-ret=-1
-while [ $ret -ne 0 ]; do
-	ret=$(install_packages "python3-dev python3-pip")
-	echo "$ret"
-done
+if [[ $1 -eq 1 ]]; then
 
-sudo apt-get clean -y
-sudo apt-get autoremove -y
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(upgrade_packages_1)
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(upgrade_packages_2)
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "build-essential cmake unzip pkg-config git")
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "libjpeg-dev libpng-dev libtiff-dev")
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "libxvidcore-dev libx264-dev")
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "libgtk-3-dev")
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "libatlas-base-dev gfortran")
+		echo "$ret"
+	done
+	ret=-1
+	while [ $ret -ne 0 ]; do
+		ret=$(install_packages "python3-dev python3-pip")
+		echo "$ret"
+	done
 
-cd ~/
-wget -O opencv.zip "https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip"
-wget -O opencv_contrib.zip "https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip"
+	sudo apt-get clean -y
+	sudo apt-get autoremove -y
 
-unzip opencv.zip
-unzip opencv_contrib.zip
+	cd ~/
+	wget -O opencv.zip "https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip"
+	wget -O opencv_contrib.zip "https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip"
 
-mv "opencv-${OPENCV_VERSION}" opencv
-mv "opencv_contrib-${OPENCV_VERSION}" opencv_contrib
+	unzip opencv.zip
+	unzip opencv_contrib.zip
 
-cd ~/
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python3 get-pip.py
-sudo pip install virtualenv virtualenvwrapper
-sudo rm -rf ~/get-pip.py ~/.cache/pip
-pip install --upgrade pip
-pip install --upgrade setuptools
-# pip install --upgrade setuptools --ignore-installed
+	mv "opencv-${OPENCV_VERSION}" opencv
+	mv "opencv_contrib-${OPENCV_VERSION}" opencv_contrib
 
-echo -e "\n# virtualenv and virtualenvwrapper" >> $BASHRC_FILE
-echo "export WORKON_HOME=$HOME/.virtualenvs" >> $BASHRC_FILE
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $BASHRC_FILE
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> $BASHRC_FILE
-source $BASHRC_FILE
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+	cd ~/
+	wget https://bootstrap.pypa.io/get-pip.py
+	sudo python3 get-pip.py
+	sudo pip install virtualenv virtualenvwrapper
+	sudo rm -rf ~/get-pip.py ~/.cache/pip
+	pip install --upgrade pip
+	pip install --upgrade setuptools
+	pip install --upgrade wheel
+	# pip install --upgrade setuptools --ignore-installed
 
-mkvirtualenv cv -p python3
+	echo -e "\n# virtualenv and virtualenvwrapper" >> $BASHRC_FILE
+	echo "export WORKON_HOME=$HOME/.virtualenvs" >> $BASHRC_FILE
+	echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $BASHRC_FILE
+	echo "source /usr/local/bin/virtualenvwrapper.sh" >> $BASHRC_FILE
+	source $BASHRC_FILE
+	export WORKON_HOME=$HOME/.virtualenvs
+	export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+	source /usr/local/bin/virtualenvwrapper.sh
 
-[[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
-if [[ "$INVENV" == "1" ]]; then
+	mkvirtualenv cv -p python3
+
+elif [[ $1 -eq 2 ]]; then
+# [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
+# if [[ "$INVENV" == "1" ]]; then
 	
-	workon cv
+	# workon cv
 
 	pip install --upgrade pip
 	pip install --upgrade setuptools
+	pip install --upgrade wheel 
+	pip install --upgrade scipy 
+	pip install --upgrade matplotlib 
+	pip install --upgrade scikit-image 
+	pip install --upgrade scikit-learn 
+	pip install --upgrade ipython
+	pip install --upgrade dlib
 	pip install --upgrade numpy
 	pip install --upgrade imutils
 	pip install --upgrade socketio
@@ -115,9 +136,14 @@ if [[ "$INVENV" == "1" ]]; then
 
 	make -j4
 
+elif [[ $1 -eq 3 ]]; then
+
 	sudo make install
 	sudo ldconfig
 
+	cd ~/
+	ls -l /usr/local/lib/python3.6/site-packages/cv2/python-3.6/
+	
 	cd /usr/local/lib/python3.6/site-packages/cv2/python-3.6/
 	sudo mv cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
 
