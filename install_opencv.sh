@@ -66,6 +66,8 @@ if [[ $1 -eq 1 ]]; then
 	sudo apt-get clean -y
 	sudo apt-get autoremove -y
 
+elif [[ $1 -eq 2 ]]; then
+
 	cd ~/
 	wget -O opencv.zip "https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip"
 	wget -O opencv_contrib.zip "https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip"
@@ -97,7 +99,7 @@ if [[ $1 -eq 1 ]]; then
 
 	mkvirtualenv cv -p python3
 
-elif [[ $1 -eq 2 ]]; then
+elif [[ $1 -eq 3 ]]; then
 # [[ "$VIRTUAL_ENV" == "" ]]; INVENV=$?
 # if [[ "$INVENV" == "1" ]]; then
 	
@@ -105,13 +107,11 @@ elif [[ $1 -eq 2 ]]; then
 
 	pip install --upgrade pip
 	pip install --upgrade setuptools
-	pip install --upgrade wheel 
-	pip install --upgrade scipy 
-	pip install --upgrade matplotlib 
-	pip install --upgrade scikit-image 
-	pip install --upgrade scikit-learn 
-	pip install --upgrade ipython
-	pip install --upgrade dlib
+	pip install --upgrade wheel
+	pip install --upgrade scipy
+	pip install --upgrade matplotlib
+	pip install --upgrade scikit-image
+	pip install --upgrade scikit-learn
 	pip install --upgrade numpy
 	pip install --upgrade imutils
 	pip install --upgrade socketio
@@ -119,8 +119,10 @@ elif [[ $1 -eq 2 ]]; then
 	pip install --upgrade eventlet
 	pip install --upgrade pillow
 	pip install --upgrade flask
+	pip install --upgrade ipython
 	pip install --upgrade keras
 	pip install --upgrade tensorflow
+	# pip install --upgrade dlib
 
 	cd ~/opencv/
 	mkdir -p build
@@ -136,12 +138,10 @@ elif [[ $1 -eq 2 ]]; then
 
 	make -j4
 
-elif [[ $1 -eq 3 ]]; then
+elif [[ $1 -eq 4 ]]; then
 
-	sudo make install
-	sudo ldconfig
+	sudo make install && sudo ldconfig
 
-	cd ~/
 	ls -l /usr/local/lib/python3.6/site-packages/cv2/python-3.6/
 	
 	cd /usr/local/lib/python3.6/site-packages/cv2/python-3.6/

@@ -8,7 +8,7 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 from imutils import paths
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import os
@@ -20,7 +20,7 @@ ap.add_argument("-m", "--model", type=str, required=True,
 	help="path to trained model")
 args = vars(ap.parse_args())
 
-NUM_EPOCHS = 1
+NUM_EPOCHS = 2
 BS = 32
 
 TRAIN_PATH = os.path.sep.join([args["dataset"], "train"])
