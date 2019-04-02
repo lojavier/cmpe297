@@ -1,5 +1,9 @@
 #!python
 
+# wget https://s3-us-west-2.amazonaws.com/static.pyimagesearch.com/face-recognition-opencv/face-recognition-opencv.zip
+# wget https://s3-us-west-2.amazonaws.com/static.pyimagesearch.com/pi-face-recognition/pi-face-recognition.zip
+# wget https://s3-us-west-2.amazonaws.com/static.pyimagesearch.com/deep-learning-google-images/google-images-deep-learning.zip
+
 # Step 1: Import the required packages
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
@@ -51,6 +55,8 @@ model.add(Dense(units = 1, activation = 'sigmoid'))
 # Step 8: Compiling the CNN
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
+# model.fit(trainX, trainY, epochs = NUM_EPOCHS)
+
 # Step 9: ImageDataGenerator
 train_datagen = ImageDataGenerator(rescale = 1 / 255.0,
                                    shear_range = 0.2,
@@ -77,6 +83,21 @@ H = model.fit_generator(training_set,
 					validation_data = test_set,
 					validation_steps = totalTest // BS)
 
+print("[INFO] dataset training successful!")
+
+# reset the testing generator and then use our trained model to
+# make predictions on the data
+print("[INFO] evaluating network...")
+test_set.reset()
+predIdxs = model.predict_generator(test_set, steps=(totalTest // BS) + 1)
+
+# show a nicely formatted classification report
+print(classification_report(test_set.classes, predIdxs, target_names=test_set.class_indices.keys()))
+
+# save the network to disk
+print("[INFO] serializing network to '{}'...".format(args["model"]))
+model.save(args["model"])
+
 # Step 12: Convert the Model to json
 model_json = model.to_json()
 with open("./model.json","w") as json_file:
@@ -84,6 +105,17 @@ with open("./model.json","w") as json_file:
 
 # Step 13: Save the weights in a seperate file
 model.save_weights("model.h5")
-model.save(args["model"])
 
-print("Dataset training Successful!")
+# plot the training loss and accuracy
+N = NUM_EPOCHS
+plt.style.use("ggplot")
+plt.figure()
+plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
+plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
+plt.plot(np.arange(0, N), H.history["acc"], label="train_acc")
+plt.plot(np.arange(0, N), H.history["val_acc"], label="val_acc")
+plt.title("Training Loss and Accuracy on Dataset")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss/Accuracy")
+plt.legend(loc="lower left")
+plt.savefig(args["plot"])
