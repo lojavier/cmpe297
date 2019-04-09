@@ -1,81 +1,78 @@
-(cv) lorenzo@lorenzo:~/cmpe297/hw1$ python save_model.py --dataset vehicle --model vehicle.model --epochs 25 --batchsize 32
+(cv) lorenzo@carla:~/cmpe297/hw1$ python save_model.py --dataset vehicle --model vehicle.model --epochs 25
 Using TensorFlow backend.
-Found 5396 images belonging to 1 classes.
-Found 5395 images belonging to 1 classes.
-Found 5394 images belonging to 1 classes.
+Found 967 images belonging to 3 classes.
+Found 967 images belonging to 3 classes.
+Found 967 images belonging to 3 classes.
 WARNING:tensorflow:From /home/lorenzo/.virtualenvs/cv/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
 Instructions for updating:
 Colocations handled automatically by placer.
-2019-04-06 16:42:21.473957: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2019-04-06 16:42:21.494174: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3408000000 Hz
-2019-04-06 16:42:21.495098: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x26d3760 executing computations on platform Host. Devices:
-2019-04-06 16:42:21.495141: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+2019-04-08 11:23:13.122805: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2019-04-08 11:23:13.129780: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2112000000 Hz
+2019-04-08 11:23:13.129989: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x28d99d0 executing computations on platform Host. Devices:
+2019-04-08 11:23:13.130007: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
 WARNING:tensorflow:From /home/lorenzo/.virtualenvs/cv/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
 Instructions for updating:
 Use tf.cast instead.
 Epoch 1/25
-168/168 [==============================] - 161s 961ms/step - loss: 0.1769 - acc: 0.9940 - val_loss: 0.1634 - val_acc: 1.0000
+30/30 [==============================] - 54s 2s/step - loss: 1.3557 - acc: 0.4750 - val_loss: 4.6081 - val_acc: 0.5375
 Epoch 2/25
-168/168 [==============================] - 158s 938ms/step - loss: 0.1589 - acc: 1.0000 - val_loss: 0.1550 - val_acc: 1.0000
+30/30 [==============================] - 50s 2s/step - loss: 1.3711 - acc: 0.5139 - val_loss: 1.5047 - val_acc: 0.5380
 Epoch 3/25
-168/168 [==============================] - 157s 937ms/step - loss: 0.1520 - acc: 1.0000 - val_loss: 0.1493 - val_acc: 1.0000
+30/30 [==============================] - 49s 2s/step - loss: 1.1568 - acc: 0.5650 - val_loss: 1.1831 - val_acc: 0.5219
 Epoch 4/25
-168/168 [==============================] - 157s 936ms/step - loss: 0.1471 - acc: 1.0000 - val_loss: 0.1450 - val_acc: 1.0000
+30/30 [==============================] - 60s 2s/step - loss: 1.0988 - acc: 0.5925 - val_loss: 1.2927 - val_acc: 0.5529
 Epoch 5/25
-168/168 [==============================] - 157s 935ms/step - loss: 0.1433 - acc: 1.0000 - val_loss: 0.1416 - val_acc: 1.0000
+30/30 [==============================] - 57s 2s/step - loss: 1.0832 - acc: 0.6097 - val_loss: 1.2518 - val_acc: 0.5679
 Epoch 6/25
-168/168 [==============================] - 157s 933ms/step - loss: 0.1402 - acc: 1.0000 - val_loss: 0.1388 - val_acc: 1.0000
+30/30 [==============================] - 56s 2s/step - loss: 1.0848 - acc: 0.6013 - val_loss: 1.3370 - val_acc: 0.5540
 Epoch 7/25
-168/168 [==============================] - 156s 929ms/step - loss: 0.1376 - acc: 1.0000 - val_loss: 0.1364 - val_acc: 1.0000
+30/30 [==============================] - 58s 2s/step - loss: 0.9994 - acc: 0.6342 - val_loss: 2.3279 - val_acc: 0.3711
 Epoch 8/25
-168/168 [==============================] - 157s 934ms/step - loss: 0.1354 - acc: 1.0000 - val_loss: 0.1344 - val_acc: 1.0000
+30/30 [==============================] - 55s 2s/step - loss: 1.0346 - acc: 0.6233 - val_loss: 1.4073 - val_acc: 0.5422
 Epoch 9/25
-168/168 [==============================] - 157s 933ms/step - loss: 0.1335 - acc: 1.0000 - val_loss: 0.1326 - val_acc: 1.0000
+30/30 [==============================] - 54s 2s/step - loss: 0.9552 - acc: 0.6739 - val_loss: 1.4044 - val_acc: 0.5636
 Epoch 10/25
-168/168 [==============================] - 157s 934ms/step - loss: 0.1318 - acc: 1.0000 - val_loss: 0.1310 - val_acc: 1.0000
+30/30 [==============================] - 53s 2s/step - loss: 0.9644 - acc: 0.6655 - val_loss: 1.4411 - val_acc: 0.5369
 Epoch 11/25
-168/168 [==============================] - 156s 930ms/step - loss: 0.1303 - acc: 1.0000 - val_loss: 0.1296 - val_acc: 1.0000
+30/30 [==============================] - 55s 2s/step - loss: 0.9785 - acc: 0.6696 - val_loss: 1.1053 - val_acc: 0.6545
 Epoch 12/25
-168/168 [==============================] - 156s 926ms/step - loss: 0.1289 - acc: 1.0000 - val_loss: 0.1283 - val_acc: 1.0000
+30/30 [==============================] - 58s 2s/step - loss: 0.9467 - acc: 0.6540 - val_loss: 1.6407 - val_acc: 0.4824
 Epoch 13/25
-168/168 [==============================] - 155s 923ms/step - loss: 0.1277 - acc: 1.0000 - val_loss: 0.1271 - val_acc: 1.0000
+30/30 [==============================] - 56s 2s/step - loss: 0.9075 - acc: 0.6837 - val_loss: 0.9421 - val_acc: 0.6642
 Epoch 14/25
-168/168 [==============================] - 156s 926ms/step - loss: 0.1265 - acc: 1.0000 - val_loss: 0.1260 - val_acc: 1.0000
+30/30 [==============================] - 51s 2s/step - loss: 0.9344 - acc: 0.6686 - val_loss: 2.6689 - val_acc: 0.4043
 Epoch 15/25
-168/168 [==============================] - 155s 920ms/step - loss: 0.1255 - acc: 1.0000 - val_loss: 0.1250 - val_acc: 1.0000
+30/30 [==============================] - 57s 2s/step - loss: 0.9254 - acc: 0.6739 - val_loss: 1.7434 - val_acc: 0.4717
 Epoch 16/25
-168/168 [==============================] - 155s 923ms/step - loss: 0.1245 - acc: 1.0000 - val_loss: 0.1240 - val_acc: 1.0000
+30/30 [==============================] - 60s 2s/step - loss: 0.8713 - acc: 0.7050 - val_loss: 1.1477 - val_acc: 0.6021
 Epoch 17/25
-168/168 [==============================] - 154s 918ms/step - loss: 0.1236 - acc: 1.0000 - val_loss: 0.1232 - val_acc: 1.0000
+30/30 [==============================] - 57s 2s/step - loss: 0.8816 - acc: 0.6743 - val_loss: 1.0625 - val_acc: 0.6471
 Epoch 18/25
-168/168 [==============================] - 155s 924ms/step - loss: 0.1227 - acc: 1.0000 - val_loss: 0.1223 - val_acc: 1.0000
+30/30 [==============================] - 55s 2s/step - loss: 0.8877 - acc: 0.6870 - val_loss: 1.4477 - val_acc: 0.5412
 Epoch 19/25
-168/168 [==============================] - 155s 921ms/step - loss: 0.1219 - acc: 1.0000 - val_loss: 0.1216 - val_acc: 1.0000
+30/30 [==============================] - 54s 2s/step - loss: 0.8804 - acc: 0.6874 - val_loss: 1.1886 - val_acc: 0.5947
 Epoch 20/25
-168/168 [==============================] - 155s 924ms/step - loss: 0.1212 - acc: 1.0000 - val_loss: 0.1208 - val_acc: 1.0000
+30/30 [==============================] - 51s 2s/step - loss: 0.8712 - acc: 0.6915 - val_loss: 1.1175 - val_acc: 0.6332
 Epoch 21/25
-168/168 [==============================] - 155s 920ms/step - loss: 0.1205 - acc: 1.0000 - val_loss: 0.1201 - val_acc: 1.0000
+30/30 [==============================] - 55s 2s/step - loss: 0.8405 - acc: 0.7082 - val_loss: 1.6718 - val_acc: 0.4877
 Epoch 22/25
-168/168 [==============================] - 156s 930ms/step - loss: 0.1198 - acc: 1.0000 - val_loss: 0.1195 - val_acc: 1.0000
+30/30 [==============================] - 62s 2s/step - loss: 0.7988 - acc: 0.7341 - val_loss: 1.5117 - val_acc: 0.5401
 Epoch 23/25
-168/168 [==============================] - 156s 928ms/step - loss: 0.1192 - acc: 1.0000 - val_loss: 0.1189 - val_acc: 1.0000
+30/30 [==============================] - 60s 2s/step - loss: 0.8653 - acc: 0.7119 - val_loss: 1.0270 - val_acc: 0.6321
 Epoch 24/25
-168/168 [==============================] - 155s 924ms/step - loss: 0.1186 - acc: 1.0000 - val_loss: 0.1183 - val_acc: 1.0000
+30/30 [==============================] - 63s 2s/step - loss: 0.8281 - acc: 0.7191 - val_loss: 1.1743 - val_acc: 0.6182
 Epoch 25/25
-168/168 [==============================] - 157s 936ms/step - loss: 0.1180 - acc: 1.0000 - val_loss: 0.1177 - val_acc: 1.0000
+30/30 [==============================] - 72s 2s/step - loss: 0.8587 - acc: 0.7032 - val_loss: 0.9108 - val_acc: 0.6963
 [INFO] evaluating network...
-testGen.classes = [0 0 0 ... 0 0 0]
-testGen.class_indices = {'car': 0}
-testGen.class_indices.keys() = dict_keys(['car'])
-len(testGen.class_indices.keys()) = 1
-/home/lorenzo/.virtualenvs/cv/lib/python3.6/site-packages/sklearn/metrics/classification.py:1143: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 due to no predicted samples.
-  'precision', 'predicted', average, warn_for)
               precision    recall  f1-score   support
 
-         car       0.00      0.00      0.00      5394
+     bicycle       0.53      0.78      0.63       231
+         car       0.91      0.70      0.80       518
+   motorbike       0.56      0.59      0.57       218
 
-   micro avg       0.00      0.00      0.00      5394
-   macro avg       0.00      0.00      0.00      5394
-weighted avg       0.00      0.00      0.00      5394
+   micro avg       0.70      0.70      0.70       967
+   macro avg       0.67      0.69      0.67       967
+weighted avg       0.74      0.70      0.71       967
 
 [INFO] serializing network to 'vehicle.model'...
+(cv) lorenzo@carla:~/cmpe297/hw1$
