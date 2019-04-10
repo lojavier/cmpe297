@@ -42,7 +42,11 @@ elif [[ $1 -eq 3 ]]; then
 	mv -v 'vehicles/train/motorbike' 'vehicles'
 	rm -vr 'vehicles/train'
 else
-	
+	# wget https://www.kaggle.com/prasunroy/natural-images/downloads/data.zip/1
+	# unzip data.zip
+	mv 'natural_images' 'vehicles'
+	rm -r 'flower'
+	rm -r 'fruit'
 fi
 
 exit 0
